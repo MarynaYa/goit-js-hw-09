@@ -22,6 +22,8 @@ class Timer {
   constructor({onTick}) {
     this.intervalId = null;
     this.isActive = false;
+    refs.startBtn.disabled = false;
+    refs.inputDate.disabled = false;
     this.onTick = onTick;
   }
   start() {
@@ -31,6 +33,8 @@ class Timer {
     //const startTime = Date.now();
     //refs.startBtn.textContent = `START`;
     this.isActive = true;
+    refs.startBtn.disabled = true;
+    refs.inputDate.disabled = true;
 
     this.intervalId = setInterval(() => {
         const currentTime = Date.now();
@@ -38,7 +42,7 @@ class Timer {
         const time = this.convertMs(deltaTime);
         this.onTick(time);
    // при 00.00.00.00 периода отсчета чистим таймер
-        if (deltaTime <= 0) {
+        if (deltaTime <= 1000) {
             this.isActive = false;
             clearInterval(this.intervalId);
            // refs.startBtn.textContent = `Finish!`;

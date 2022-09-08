@@ -23,16 +23,14 @@ function onFormSubmit(event) {
   // №4
 for (let i =1; i <= amountEl; i++) {   
      createPromise(i, delayEl)   
-   .then(({ position, delay }) => {
-     setTimeout(() => {
+   .then(({ position, delay }) => {    
        Notify.success(`✅ Fulfilled promise ${position} in ${delay}ms`);
-     }, delay);
-   })
-   .catch(({ position, delay }) => {
-     setTimeout(() => {
+     })
+
+   .catch(({ position, delay }) => {   
        Notify.failure(`❌ Rejected promise ${position} in ${delay}ms`);
-     }, delay);
-   });
+     })
+
    // № 5
    delayEl += stepEl;
 }
